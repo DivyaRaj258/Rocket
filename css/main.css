@@ -29,11 +29,34 @@ body {
 .obstacle {
     
     background-color: transparent;
-    background-size: cover;
+    background-size: small;
     position: absolute;
+}
+
+.astroid {
+    
+    background-color: transparent;
+    background-size: small;
+    position: absolute;
+    width: auto; 
+    height: 25px; 
 }
 
 #page-gameover {
     text-align: center;
     background-color: rgb(166, 161, 171);
+}
+
+.contentCrash {
+    text-align: center;
+    background-color: rgba(143, 22, 36, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.contentLand {
+    text-align: center;
+    background-color: rgba(22, 143, 34, 0.8);
+    padding: 20px;
+    border-radius: 10px;
 }
