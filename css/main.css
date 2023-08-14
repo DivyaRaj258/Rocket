@@ -24,7 +24,8 @@ body {
     background-color: transparent;
     background-image: url('css/platform.png');
     background-size: cover;
-    position: absolute;
+    position:relative;
+    offset-position: 20px;
 }
 .obstacle {
     
@@ -59,4 +60,27 @@ body {
     background-color: rgba(22, 143, 34, 0.8);
     padding: 20px;
     border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    background-color: rgba(141, 143, 22, 0.8);
+    
+}
+    #timer {
+    font-size: 18px;
+    color: red; /* Add red font color */
+  }
+
+  #score {
+    font-size: 24px;
+    color: red; /* Add red font color */
+  }
+
+.scoreBoard {
+    background-color: transparent;
+    background-size: small;
+    position: absolute;
+    width: auto; 
+    height: 25px; 
 }

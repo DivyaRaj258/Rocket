@@ -3,15 +3,17 @@ class Game {
         this.player = new Player();
         this.obstaclesArr = []; //will store instances of the class Obstacle
         this.astroidArr = []; //will store instances of the class Obstacle
-        
-        let score = 0;
-        
-          
+        this.score = 0;
+      
+                         
     }
     start() {
 
         // attach event listeners
         this.attachEventListeners();
+
+        // Intialize score board
+        this.newScoreBoard = new ScoreBoard();  
 
         // create obstacles
         setInterval(() => {
@@ -31,6 +33,8 @@ class Game {
                 obstacleInstance.moveDown(); // move
                 this.removeObstacleIfOutside(obstacleInstance); // remove if outside
                 this.detectCollision(obstacleInstance);  // detect 100% collision
+                
+                 
              
             });
         }, 100);
@@ -68,26 +72,36 @@ class Game {
             this.astroidArr.shift(); // remove from the array
         }
     }
-    
+
+
     detectCollision(obstacleInstance)
     {
         if (
-            
             // Modified Code
             this.player.positionX === obstacleInstance.positionX &&
             this.player.positionY === obstacleInstance.positionY &&
             this.player.width === obstacleInstance.width
             //this.player.height === obstacleInstance.height
-                 
-                
-         ) {
+        ) {
+            // Calling the update score board display
+            this.score++
+            this.newScoreBoard.updateScore(this.score);
+                  
+
+            if( this.score===3)
+            {
             // Collision detected! Change to Success Landing
-          // Collision detected! Change to Success Landing
-            console.log("The Eagle has Landed ");
+            console.log("The Eagle has Landed " + this.score);
+            console.log(this.score);
+            // Collision detected! Change to Success Landing
             location.href = "gameoverWin.html";
+
+            }
+            
                      
         }
     }
+
 
     detectCollisionAstroid(astroidInstance)
     {
@@ -105,7 +119,8 @@ class Game {
         }
           
     }
-   
+
+       
 }
 
 
@@ -155,6 +170,9 @@ class Player {
 }
 
 
+
+
+
 class Obstacle {
     constructor() {
        
@@ -165,18 +183,19 @@ class Obstacle {
         this.domElement = null;
         this.createDomElement();
     }
-    createDomElement() {
+     createDomElement() {
         // create dom element
         this.domElement = document.createElement("div");
 
-            // Image Rocket code
-            this.domElement = document.createElement('img');
-            this.domElement.src = 'css/Rocket.png'; 
-            this.domElement.style.width = this.width + 'px';
-            this.domElement.style.height = this.height + 'px';
-            this.domElement.style.position = 'absolute';
-            this.domElement.style.left = this.positionX + 'px';
-            //
+        
+        // Image Rocket code
+        this.domElement = document.createElement('img');
+        this.domElement.src = 'css/Rocket.png'; 
+        this.domElement.style.width = this.width + 'px';
+        this.domElement.style.height = this.height + 'px';
+        this.domElement.style.position = 'absolute';
+        this.domElement.style.left = this.positionX + 'px';
+        //
 
         // set id
         this.domElement.className = "obstacle";
@@ -188,12 +207,59 @@ class Obstacle {
         //append to the dom
         const parentElm = document.getElementById("board");
         parentElm.appendChild(this.domElement);
+
+      
     }
     moveDown() {
         this.positionY -= 2;
         this.domElement.style.bottom = this.positionY + "vh";
     }
+  
 }
+
+
+class ScoreBoard {
+    constructor() {
+       
+        this.domElement = null;
+        this.scoreElement = null;
+        this.createDomElement();
+        let points =0;
+        let score1 = 0;
+    }
+
+     createDomElement() {
+        // create dom element
+        this.domElement = document.createElement("div");
+        this.scoreElement = document.createElement("div");
+        
+        
+       
+     }
+
+     // Update the Html
+     updateScore(score1)
+     {
+        // Scoring
+        
+        this.scoreElement.innerText = 'SCORE = :'+ score1;
+        console.log ("Inside Update score***********   " + score1);
+        this.scoreElement.className = "score";
+     
+        //append to the dom
+        const parentElm = document.getElementById("board");
+        parentElm.appendChild(this.domElement);
+
+        // Append the score element to the parent element (assuming you have a "board" parent element)
+        parentElm.appendChild(this.scoreElement);
+        console.log("*&*&*&*&*& " + score1);
+     }
+
+ 
+    }   
+     
+
+  
 
 
 class Astroid {
