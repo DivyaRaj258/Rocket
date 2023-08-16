@@ -1,5 +1,6 @@
 let countdownGame = null
 
+
 class Game {
     constructor() {
         this.player = new Player();
@@ -7,11 +8,17 @@ class Game {
         this.astroidArr = []; //will store instances of the class Obstacle
         this.score = 0;  // Initialize scoure
         //this.counter = 0; // initialize counter
-
-
+      
     }
+
     start() {
 
+        // Initiate sound
+        const audioElement = new Audio('./css/sound.wav'); // Audio initialize
+        audioElement.loop = true;
+        audioElement.play();
+        console.log (" AUDIO IS STARTED*************");
+        
         // attach event listeners
         this.attachEventListeners();
 
@@ -21,7 +28,7 @@ class Game {
 
         // Intialize timer 
         this.newCounter = new CountDown();
-        this.newCounter.startCountdown();;
+        this.newCounter.startCountdown();
 
         // create Rocket
         setInterval(() => {
@@ -90,7 +97,7 @@ class Game {
             // Modified Code
             this.player.positionX === rocketInstance.positionX &&
             this.player.positionY === rocketInstance.positionY &&
-            this.player.width === rocketInstance.width
+            this.player.width <=rocketInstance.width
             //this.player.height === RocketInstance.height
         ) {
             // Calling the update score board display
@@ -129,10 +136,13 @@ class Game {
 
     }
 
+       
+
+}   // End Class Game
 
 
 
-}
+// Player Class 1
 class Player {
     constructor() {
         this.width = 10;
@@ -177,7 +187,7 @@ class Player {
         this.domElement.style.left = this.positionX + "vw";
     }
 }
-
+// Rocket Class 2
 class Rocket {
     constructor() {
 
@@ -221,7 +231,7 @@ class Rocket {
     }
 
 }
-// Score Board Class
+// Score Board Class 3
 class ScoreBoard {
     constructor() {
 
@@ -259,7 +269,7 @@ class ScoreBoard {
 
 
 }
-// Astroid Class
+// Astroid Class 4
 class Astroid {
     constructor() {
 
@@ -308,11 +318,10 @@ class Astroid {
        */
 }
 
-
-// New Class CountDown
+// New Class CountDown 5
 class CountDown {
     constructor() {
-        this.remainingTime = 2000 * 60; // Initialize Timer
+        this.remainingTime = 1000 * 60; // Initialize Timer
         this.domElement = null;
         this.createDomElement();
         this.startCountdown();
@@ -338,10 +347,14 @@ class CountDown {
             if (this.remainingTime <= 0) {
                 clearInterval(countdownGame);
                 location.href = "gameoverTime.html";
+                //this.newButton.createRestartButton(); // Create the replay button 
+                
+                
             }
         }, 1000);
     }
 }
+
 
 
 /*
@@ -392,7 +405,10 @@ location.href = "gameoverTime.html"
  
 }
 */
-
+//function play(){
+    //var audio = new Audio (/css/sound.wav)
+    //audio.play();
+//}
 
 const game = new Game();
 game.start();
