@@ -57,10 +57,18 @@ body {
 
 .contentLand {
     text-align: center;
-    background-color: orange;
+    background-color: royalblue;
     padding: 20px;
     border-radius: 10px;
     
+}
+
+.rocketLaunch {
+    text-align: left;
+    background-color: cornflowerblue;
+    padding: 20px;
+    border-radius: 10px;
+
 }
 
 .title {
@@ -86,16 +94,20 @@ body {
     height: 25px; 
 }
 
-#button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: relative; 
+}
+
+.button {
+    background-color: #3498db;
     padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
     border-radius: 5px;
-  }
+}
+
+
+
+
+
