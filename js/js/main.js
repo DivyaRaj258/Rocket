@@ -14,7 +14,7 @@ class Game {
     start() {
 
         // Initiate sound
-        const audioElement = new Audio('./css/sound.wav'); // Audio initialize
+        const audioElement = new Audio('./css/sound1.mp3'); // Audio initialize
         audioElement.loop = true;
         audioElement.play();
         console.log (" AUDIO IS STARTED*************");
@@ -94,11 +94,16 @@ class Game {
 
     detectCollision(rocketInstance) {
         if (
-            // Modified Code
-            this.player.positionX === rocketInstance.positionX &&
-            this.player.positionY === rocketInstance.positionY &&
-            this.player.width <=rocketInstance.width
+            // Full collision
+           // this.player.positionX === rocketInstance.positionX &&
+            //this.player.positionY === rocketInstance.positionY &&
+            //this.player.width === rocketInstance.width
             //this.player.height === RocketInstance.height
+
+            // Only partial collision
+            this.player.positionX < rocketInstance.positionX + rocketInstance.width &&
+            this.player.positionX + this.player.width > rocketInstance.positionX &&
+            this.player.positionY === rocketInstance.positionY + rocketInstance.height 
         ) {
             // Calling the update score board display
             this.score++
@@ -145,7 +150,7 @@ class Game {
 // Player Class 1
 class Player {
     constructor() {
-        this.width = 10;
+        this.width = 20;
         this.height = 10;
         this.positionX = 50 - (this.width / 2);
         this.positionY = 0;
@@ -179,11 +184,11 @@ class Player {
         parentElm.appendChild(this.domElement);
     }
     moveLeft() {
-        this.positionX--;
+        this.positionX -= 2;
         this.domElement.style.left = this.positionX + "vw";
     }
     moveRight() {
-        this.positionX++;
+        this.positionX += 2;
         this.domElement.style.left = this.positionX + "vw";
     }
 }
